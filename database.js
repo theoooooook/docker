@@ -7,7 +7,7 @@ database.connect = async () => {
  */
     const MongoClient = require('mongodb').MongoClient;
     const url = 'mongodb://localhost:27017';
-    const dbName = 'parkingApi';
+    const dbName = 'docker_project';
     let db
     MongoClient.connect(url, function(err, client) {
     console.log("Connected successfully to MongoDB Server");
