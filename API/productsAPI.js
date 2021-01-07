@@ -1,29 +1,29 @@
-const parking = require('../Model/basket')
-const basketController = {}
+const parking = require('../Model/product')
+const productsAPI = {}
 
-basketsController.getUsers = async (req,res)=> {
+productsAPI.getUsers = async (req,res)=> {
     try {
-        const docs = await basket.list()
+        const docs = await product.list()
         res.status(200).json(docs)
     } catch (err) {
         console.log(err)
         throw err
     }
 }
-basketsController.getUser = async (req,res)=> {
+productsAPI.getUser = async (req,res)=> {
     const id = parseInt(req.params.id)
     try {
-        const docs = await basket.getOne(id)
+        const docs = await product.getOne(id)
         res.status(200).json(docs)
     } catch (err) {
         console.log(err)
         throw err
     }
 }
-basketsController.createUser = async (req,res)=> {
+productsAPI.createUser = async (req,res)=> {
     try {
-        const basketData = req.body
-        const createdUser = basket.create(basketData)
+        const productData = req.body
+        const createdUser = product.create(productData)
         res.status(200).json(createdUser)
     } catch (err) {
         console.log(err)
@@ -31,36 +31,37 @@ basketsController.createUser = async (req,res)=> {
     }
 }
 
-basketsController.updateUser = async (req,res)=> {
+productsAPI.updateUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         const replacementUser = req.body
-        const modifiedUser = await basket.replace(id, replacementUser)
+        const modifiedUser = await product.replace(id, replacementUser)
         res.status(200).json(modifiedUser)
     } catch (err) {
         console.log(err)
         throw err
     }
 }
-basketsController.replaceUser = async (req,res)=> {
+productsAPI.replaceUser = async (req,res)=> {
     try {
         const replacementUser = req.body
         const id = parseInt(req.params.id)
-        const updatedUser = await basket.edit(id, replacementUser)
+        const updatedUser = await product.edit(id, replacementUser)
         res.status(200).json(updatedUser)
     } catch (err) {
         console.log(err)
         throw err
     } 
 }
-basketsController.removeUser = async (req,res)=> {
+productsAPI.removeUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
-        await basket.destroy(id)
-        res.status(200).json(basket)
+        await product.destroy(id)
+        res.status(200).json(product)
     } catch (err) {
         console.log(err)
         throw err
     } 
 }
-module.exports = basketController
+
+module.exports = productsAPI

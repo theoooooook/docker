@@ -1,13 +1,13 @@
 
 const express = require('express')
-const parkingController = require('./Controller/parkingController')
+const parkingsAPI = require('./API/parkingsAPI')
 const router = express.Router()
 
-router.get('/parkings', parkingController.getParkings)
-router.get('/parkings/:id', parkingController.getParking)
-router.post('/parkings', parkingController.createParking)
-router.put('/parkings/:id', parkingController.replaceParking)
-router.patch('/parkings/:id', parkingController.updateParking)
-router.delete('/parkings/:id',parkingController.removeParking)
+router.get('/parkings', parkingsAPI.getParkings)
+router.get('/parkings/:id', parkingsAPI.getParking)
+router.post('/parkings', parkingsAPI.createParking)
+router.put('/parkings/:id', parkingsAPI.replaceParking)
+router.patch('/parkings/:id', parkingsAPI.updateParking)
+router.delete('/parkings/:id',parkingsAPI.removeParking)
 
 module.exports = router

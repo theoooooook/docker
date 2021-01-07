@@ -1,7 +1,7 @@
 const parking = require('../Model/comment')
-const commentsController = {}
+const commentsAPI = {}
 
-commentsController.getUsers = async (req,res)=> {
+commentsAPI.getUsers = async (req,res)=> {
     try {
         const docs = await comment.list()
         res.status(200).json(docs)
@@ -10,7 +10,7 @@ commentsController.getUsers = async (req,res)=> {
         throw err
     }
 }
-commentsController.getUser = async (req,res)=> {
+commentsAPI.getUser = async (req,res)=> {
     const id = parseInt(req.params.id)
     try {
         const docs = await comment.getOne(id)
@@ -20,7 +20,7 @@ commentsController.getUser = async (req,res)=> {
         throw err
     }
 }
-commentsController.createUser = async (req,res)=> {
+commentsAPI.createUser = async (req,res)=> {
     try {
         const commentData = req.body
         const createdUser = comment.create(commentData)
@@ -31,7 +31,7 @@ commentsController.createUser = async (req,res)=> {
     }
 }
 
-commentsController.updateUser = async (req,res)=> {
+commentsAPI.updateUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         const replacementUser = req.body
@@ -42,7 +42,7 @@ commentsController.updateUser = async (req,res)=> {
         throw err
     }
 }
-commentsController.replaceUser = async (req,res)=> {
+commentsAPI.replaceUser = async (req,res)=> {
     try {
         const replacementUser = req.body
         const id = parseInt(req.params.id)
@@ -53,7 +53,7 @@ commentsController.replaceUser = async (req,res)=> {
         throw err
     } 
 }
-commentsController.removeUser = async (req,res)=> {
+commentsAPI.removeUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         await comment.destroy(id)
@@ -63,4 +63,4 @@ commentsController.removeUser = async (req,res)=> {
         throw err
     } 
 }
-module.exports = commentsController
+module.exports = commentsAPI

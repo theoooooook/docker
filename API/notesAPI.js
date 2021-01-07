@@ -1,29 +1,29 @@
-const parking = require('../Model/product')
-const productsController = {}
+const parking = require('../Model/note')
+const notesAPI = {}
 
-productsController.getUsers = async (req,res)=> {
+notesAPI.getUsers = async (req,res)=> {
     try {
-        const docs = await product.list()
+        const docs = await note.list()
         res.status(200).json(docs)
     } catch (err) {
         console.log(err)
         throw err
     }
 }
-productsController.getUser = async (req,res)=> {
+notesAPI.getUser = async (req,res)=> {
     const id = parseInt(req.params.id)
     try {
-        const docs = await product.getOne(id)
+        const docs = await note.getOne(id)
         res.status(200).json(docs)
     } catch (err) {
         console.log(err)
         throw err
     }
 }
-productsController.createUser = async (req,res)=> {
+notesAPI.createUser = async (req,res)=> {
     try {
-        const productData = req.body
-        const createdUser = product.create(productData)
+        const noteData = req.body
+        const createdUser = note.create(noteData)
         res.status(200).json(createdUser)
     } catch (err) {
         console.log(err)
@@ -31,37 +31,37 @@ productsController.createUser = async (req,res)=> {
     }
 }
 
-productsController.updateUser = async (req,res)=> {
+notesAPI.updateUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         const replacementUser = req.body
-        const modifiedUser = await product.replace(id, replacementUser)
+        const modifiedUser = await note.replace(id, replacementUser)
         res.status(200).json(modifiedUser)
     } catch (err) {
         console.log(err)
         throw err
     }
 }
-productsController.replaceUser = async (req,res)=> {
+notesAPI.replaceUser = async (req,res)=> {
     try {
         const replacementUser = req.body
         const id = parseInt(req.params.id)
-        const updatedUser = await product.edit(id, replacementUser)
+        const updatedUser = await note.edit(id, replacementUser)
         res.status(200).json(updatedUser)
     } catch (err) {
         console.log(err)
         throw err
     } 
 }
-productsController.removeUser = async (req,res)=> {
+notesAPI.removeUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
-        await product.destroy(id)
-        res.status(200).json(product)
+        await note.destroy(id)
+        res.status(200).json(note)
     } catch (err) {
         console.log(err)
         throw err
     } 
 }
 
-module.exports = productsController
+module.exports = notesAPI

@@ -1,7 +1,7 @@
 const parking = require('../Model/authentification')
 const authificationController = {}
 
-authentificationsController.getUsers = async (req,res)=> {
+authentificationsAPI.getUsers = async (req,res)=> {
     try {
         const docs = await authentification.list()
         res.status(200).json(docs)
@@ -10,7 +10,7 @@ authentificationsController.getUsers = async (req,res)=> {
         throw err
     }
 }
-authentificationsController.getUser = async (req,res)=> {
+authentificationsAPI.getUser = async (req,res)=> {
     const id = parseInt(req.params.id)
     try {
         const docs = await authentification.getOne(id)
@@ -20,7 +20,7 @@ authentificationsController.getUser = async (req,res)=> {
         throw err
     }
 }
-authentificationsController.createUser = async (req,res)=> {
+authentificationsAPI.createUser = async (req,res)=> {
     try {
         const authentificationData = req.body
         const createdUser = authentification.create(authentificationData)
@@ -31,7 +31,7 @@ authentificationsController.createUser = async (req,res)=> {
     }
 }
 
-authentificationsController.updateUser = async (req,res)=> {
+authentificationsAPI.updateUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         const replacementUser = req.body
@@ -42,7 +42,7 @@ authentificationsController.updateUser = async (req,res)=> {
         throw err
     }
 }
-authentificationsController.replaceUser = async (req,res)=> {
+authentificationsAPI.replaceUser = async (req,res)=> {
     try {
         const replacementUser = req.body
         const id = parseInt(req.params.id)
@@ -53,7 +53,7 @@ authentificationsController.replaceUser = async (req,res)=> {
         throw err
     } 
 }
-authentificationsController.removeUser = async (req,res)=> {
+authentificationsAPI.removeUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         await authentification.destroy(id)

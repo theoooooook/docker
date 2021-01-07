@@ -1,7 +1,7 @@
 const user = require('../Model/user')
-const usersController = {}
+const usersAPI = {}
 
-usersController.getUsers = async (req,res)=> {
+usersAPI.getUsers = async (req,res)=> {
     try {
         const docs = await user.list()
         res.status(200).json(docs)
@@ -10,7 +10,7 @@ usersController.getUsers = async (req,res)=> {
         throw err
     }
 }
-usersController.getUser = async (req,res)=> {
+usersAPI.getUser = async (req,res)=> {
     const id = parseInt(req.params.id)
     try {
         const docs = await user.getOne(id)
@@ -20,7 +20,7 @@ usersController.getUser = async (req,res)=> {
         throw err
     }
 }
-usersController.createUser = async (req,res)=> {
+usersAPI.createUser = async (req,res)=> {
     try {
         const userData = req.body
         const createdUser = user.create(userData)
@@ -31,7 +31,7 @@ usersController.createUser = async (req,res)=> {
     }
 }
 
-usersController.updateUser = async (req,res)=> {
+usersAPI.updateUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         const replacementUser = req.body
@@ -42,7 +42,7 @@ usersController.updateUser = async (req,res)=> {
         throw err
     }
 }
-usersController.replaceUser = async (req,res)=> {
+usersAPI.replaceUser = async (req,res)=> {
     try {
         const replacementUser = req.body
         const id = parseInt(req.params.id)
@@ -53,7 +53,7 @@ usersController.replaceUser = async (req,res)=> {
         throw err
     } 
 }
-usersController.removeUser = async (req,res)=> {
+usersAPI.removeUser = async (req,res)=> {
     try {
         const id = parseInt(req.params.id)
         await user.destroy(id)
@@ -64,4 +64,4 @@ usersController.removeUser = async (req,res)=> {
     } 
 }
 
-module.exports = usersController
+module.exports = usersAPI
