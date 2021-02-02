@@ -12,6 +12,8 @@ exports.create = (req, res) => {
     // Create a Basket
     const basket = new Basket({
       // TO DEFINE
+      isPaid : req.body.isPaid,
+      idUser : req.body.idUser
     });
   
     // Save Basket in the database

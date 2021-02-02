@@ -12,6 +12,9 @@ exports.create = (req, res) => {
     // Create a Comment
     const comment = new Comment({
       // TO DEFINE
+      message : req.body.message,
+      idUser : req.body.idUser,
+      idProduct : req.body.idProduct
     });
   
     // Save Comment in the database
