@@ -2,6 +2,8 @@ const sql = require("../../models/database.js");
 // constructor
 const Basket = function(basket) {
   //TO DEFINE
+  this.isPaid = isPaid;
+  this.idUser = idUser;
 };
 
 Basket.create = (newBasket, result) => {
