@@ -1,6 +1,6 @@
 const express = require('express')
 const authentificationRouter = express.Router()
-const authentifications = require("../controllers/authentification.controller.js");
+const authentifications = require("./authentification.controller.js");
 
 // Create a new Customer
 authentificationRouter.post("/authentifications", authentifications.create);

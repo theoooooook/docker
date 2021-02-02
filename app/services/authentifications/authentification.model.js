@@ -1,4 +1,4 @@
-const sql = require("./database.js");
+const sql = require("../../models/database.js");
 
 // constructor
 const Authentification = function(authentification) {

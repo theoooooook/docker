@@ -1,4 +1,4 @@
-const Product = require("../models/product.model.js");
+const Product = require("./product.model.js");
 
 // Create and Save a new Product
 exports.create = (req, res) => {

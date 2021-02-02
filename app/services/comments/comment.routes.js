@@ -1,6 +1,6 @@
 const express = require('express')
 const parkingRouter = express.Router()
-const parkings = require("../../controllers/parking.controller.js");
+const parkings = require("./comment.controller.js");
 
 // Create a new Customer
 parkingRouter.post("/parkings", parkings.create);

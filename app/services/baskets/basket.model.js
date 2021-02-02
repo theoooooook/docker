@@ -1,5 +1,4 @@
-const sql = require("./database.js");
-
+const sql = require("../../models/database.js");
 // constructor
 const Basket = function(basket) {
   //TO DEFINE

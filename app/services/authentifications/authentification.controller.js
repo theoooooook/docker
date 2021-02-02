@@ -1,4 +1,4 @@
-const Authentification = require("../models/authentification.model.js");
+const Authentification = require("./authentification.model.js");
 
 // Create and Save a new Authentification
 exports.create = (req, res) => {

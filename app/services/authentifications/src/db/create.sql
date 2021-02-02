@@ -1,0 +1,2 @@
+CREATE DATABASE authentifications_dev;
+CREATE DATABASE authentifications_test;

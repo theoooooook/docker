@@ -1,4 +1,4 @@
-const Basket = require("../models/basket.model.js");
+const Basket = require("./basket.model.js");
 
 // Create and Save a new Basket
 exports.create = (req, res) => {

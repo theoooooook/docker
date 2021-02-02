@@ -1,0 +1,2 @@
+CREATE DATABASE notes_dev;
+CREATE DATABASE notes_test;
