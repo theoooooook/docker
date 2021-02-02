@@ -1,8 +1,10 @@
-const sql = require("./database.js");
+const sql = require("../../models/database.js");
 
 // constructor
-const Note = function(note) {
-  //TO DEFINE
+const Note = function(note) {  
+  this.val = note.val;
+  this.idUser = note.idUser;
+  this.idProduct = note.idProduct;
 };
 
 Note.create = (newNote, result) => {
@@ -19,7 +21,7 @@ Note.create = (newNote, result) => {
 };
 
 Note.findById = (noteId, result) => {
-  sql.query(`SELECT * FROM notes WHERE id = ${noteId}`, (err, res) => {
+  sql.query(`SELECT * FROM notes WHERE idNote = ${noteId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,8 +55,8 @@ Note.getAll = result => {
 Note.updateById = (id, note, result) => {
   sql.query(
     // QUERY TO DEFINE WITH PROPER PARAMETERS
-    "UPDATE notes SET name = ?, type = ?, city = ? WHERE id = ?",
-    [note.name, note.type, note.city, id],
+    "UPDATE notes SET val = ?, idUser = ?, idProduct = ? WHERE idNote = ?",
+    [note.val, note.idUser, note.idProduct, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -75,7 +77,7 @@ Note.updateById = (id, note, result) => {
 };
 
 Note.remove = (id, result) => {
-  sql.query("DELETE FROM notes WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM notes WHERE idNote = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

@@ -1,8 +1,10 @@
-const sql = require("./database.js");
+const sql = require("../../models/database.js");
 
 // constructor
-const Product = function(product) {
-  //TO DEFINE
+const Product = function(product) {  
+  this.name = product.name;
+  this.price = product.price;
+  this.description = product.description;
 };
 
 Product.create = (newProduct, result) => {
@@ -19,7 +21,7 @@ Product.create = (newProduct, result) => {
 };
 
 Product.findById = (productId, result) => {
-  sql.query(`SELECT * FROM products WHERE id = ${productId}`, (err, res) => {
+  sql.query(`SELECT * FROM products WHERE idProduct = ${productId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,8 +55,8 @@ Product.getAll = result => {
 Product.updateById = (id, product, result) => {
   sql.query(
     // QUERY TO DEFINE WITH PROPER PARAMETERS
-    "UPDATE products SET name = ?, type = ?, city = ? WHERE id = ?",
-    [product.name, product.type, product.city, id],
+    "UPDATE products SET name = ?, price = ?, description = ? WHERE idProduct = ?",
+    [product.name, product.price, product.description, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -75,7 +77,7 @@ Product.updateById = (id, product, result) => {
 };
 
 Product.remove = (id, result) => {
-  sql.query("DELETE FROM products WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM products WHERE idProduct = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

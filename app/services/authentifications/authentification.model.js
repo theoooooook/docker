@@ -19,7 +19,7 @@ Authentification.create = (newAuthentification, result) => {
 };
 
 Authentification.findById = (authentificationId, result) => {
-  sql.query(`SELECT * FROM authentifications WHERE id = ${authentificationId}`, (err, res) => {
+  sql.query(`SELECT * FROM authentifications WHERE idAuth = ${authentificationId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,7 +53,7 @@ Authentification.getAll = result => {
 Authentification.updateById = (id, authentification, result) => {
   sql.query(
     // QUERY TO DEFINE WITH PROPER PARAMETERS
-    "UPDATE authentifications SET name = ?, type = ?, city = ? WHERE id = ?",
+    "UPDATE authentifications SET name = ?, type = ?, city = ? WHERE idAuth = ?",
     [authentification.name, authentification.type, authentification.city, id],
     (err, res) => {
       if (err) {
@@ -75,7 +75,7 @@ Authentification.updateById = (id, authentification, result) => {
 };
 
 Authentification.remove = (id, result) => {
-  sql.query("DELETE FROM authentifications WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM authentifications WHERE idAuth = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

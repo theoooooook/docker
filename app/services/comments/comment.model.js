@@ -1,8 +1,10 @@
-const sql = require("./database.js");
+const sql = require("../../models/database.js");
 
 // constructor
 const Comment = function(comment) {
-  //TO DEFINE
+  this.message = comment.message;
+  this.idUser = comment.idUser;
+  this.idProduct = comment.idProduct;
 };
 
 Comment.create = (newComment, result) => {
@@ -19,7 +21,7 @@ Comment.create = (newComment, result) => {
 };
 
 Comment.findById = (commentId, result) => {
-  sql.query(`SELECT * FROM comments WHERE id = ${commentId}`, (err, res) => {
+  sql.query(`SELECT * FROM comments WHERE idComment = ${commentId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,8 +55,8 @@ Comment.getAll = result => {
 Comment.updateById = (id, comment, result) => {
   sql.query(
     // QUERY TO DEFINE WITH PROPER PARAMETERS
-    "UPDATE comments SET name = ?, type = ?, city = ? WHERE id = ?",
-    [comment.name, comment.type, comment.city, id],
+    "UPDATE comments SET message = ?, idUser = ?, idProduct = ? WHERE idComment = ?",
+    [comment.message, comment.idUser, comment.idProduct, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -75,7 +77,7 @@ Comment.updateById = (id, comment, result) => {
 };
 
 Comment.remove = (id, result) => {
-  sql.query("DELETE FROM comments WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM comments WHERE idComment = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

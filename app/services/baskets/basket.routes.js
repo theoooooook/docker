@@ -1,6 +1,6 @@
 const express = require('express')
 const basketRouter = express.Router()
-const baskets = require("../controllers/basket.controller.js");
+const baskets = require("./basket.controller.js");
 
 // Create a new Customer
 basketRouter.post("/baskets", baskets.create);

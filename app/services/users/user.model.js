@@ -1,8 +1,12 @@
-const sql = require("./database.js");
+const sql = require("../../models/database.js");
 
 // constructor
 const User = function(user) {
-  //TO DEFINE
+  this.firstname = user.firstname;
+  this.lastname = user.lastname;
+  this.username = user.username;
+  this.password = user.password;
+  this.address = user.address;
 };
 
 User.create = (newUser, result) => {
@@ -19,7 +23,7 @@ User.create = (newUser, result) => {
 };
 
 User.findById = (userId, result) => {
-  sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
+  sql.query(`SELECT * FROM users WHERE idUser = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,8 +57,8 @@ User.getAll = result => {
 User.updateById = (id, user, result) => {
   sql.query(
     // QUERY TO DEFINE WITH PROPER PARAMETERS
-    "UPDATE users SET name = ?, type = ?, city = ? WHERE id = ?",
-    [user.name, user.type, user.city, id],
+    "UPDATE users SET firstname = ?, lastname = ?, username = ?, password = ?, address = ? WHERE idUser = ?",
+    [user.firstname, user.lastname, user.username, user.password, user.address, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -75,7 +79,7 @@ User.updateById = (id, user, result) => {
 };
 
 User.remove = (id, result) => {
-  sql.query("DELETE FROM users WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM users WHERE idUser = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

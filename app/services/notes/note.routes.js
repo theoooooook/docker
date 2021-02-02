@@ -1,6 +1,6 @@
 const express = require('express')
 const noteRouter = express.Router()
-const notes = require("../controllers/note.controller.js");
+const notes = require("./note.controller.js");
 
 // Create a new Customer
 noteRouter.post("/notes", notes.create);

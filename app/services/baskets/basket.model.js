@@ -19,7 +19,7 @@ Basket.create = (newBasket, result) => {
 };
 
 Basket.findById = (basketId, result) => {
-  sql.query(`SELECT * FROM baskets WHERE id = ${basketId}`, (err, res) => {
+  sql.query(`SELECT * FROM baskets WHERE idBasket = ${basketId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -53,7 +53,7 @@ Basket.getAll = result => {
 Basket.updateById = (id, basket, result) => {
   sql.query(
     // QUERY TO DEFINE WITH PROPER PARAMETERS
-    "UPDATE baskets SET name = ?, type = ?, city = ? WHERE id = ?",
+    "UPDATE baskets SET name = ?, type = ?, city = ? WHERE idBasket = ?",
     [basket.name, basket.type, basket.city, id],
     (err, res) => {
       if (err) {
@@ -75,7 +75,7 @@ Basket.updateById = (id, basket, result) => {
 };
 
 Basket.remove = (id, result) => {
-  sql.query("DELETE FROM baskets WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM baskets WHERE idBasket = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
