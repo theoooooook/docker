@@ -38,7 +38,7 @@ exports.findAll = (req, res) => {
           message:
             err.message || "Some error occurred while retrieving users."
         });
-      else res.send(data);
+      else res.header('Access-Control-Allow-Origin', '*').send(data);
     });
   };
 
@@ -55,7 +55,7 @@ exports.findOne = (req, res) => {
             message: "Error retrieving User with id " + req.params.userId
           });
         }
-      } else res.send(data);
+      } else res.header('Access-Control-Allow-Origin', '*').send(data);
     });
   };
 
