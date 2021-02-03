@@ -16,7 +16,6 @@ exports.create = (req, res) => {
       price : req.body.price,
       description : req.body.description
     });
-  
     // Save Product in the database
     Product.create(product, (err, data) => {
       if (err)

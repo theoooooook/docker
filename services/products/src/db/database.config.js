@@ -1,10 +1,6 @@
-var db = "products_dev";
-if (process.env.NODE_ENV=='development'){
-    db = "products_dev";
-}
 module.exports = {
-    HOST: "localhost",     
-    USER: "root",     
-    PASSWORD: "root",
-    DB : "docker"
+    HOST: process.env.DATABASE_HOST,     
+    USER: process.env.DATABASE_USER,     
+    PASSWORD: process.env.DATABASE_PW,
+    DB : process.env.DATABASE_DB
 };

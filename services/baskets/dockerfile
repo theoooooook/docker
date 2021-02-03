@@ -1,12 +1,16 @@
+# Use latest node image
 FROM node:latest
-ENV NODE_ENV=production
 
-WORKDIR /app
+# create and set app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-COPY ["package.json", "package-lock.json*", "./"]
+# Install app dependencies
+COPY package*.json ./
+RUN npm install
 
-RUN npm install --production
-
+# Bundle app source
 COPY . .
 
-CMD [ "node", "server.js" ]
+# Run app
+CMD ["npm", "start"]

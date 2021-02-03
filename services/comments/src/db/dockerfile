@@ -1,4 +1,8 @@
-FROM postgres
+FROM mysql:5
 
-# run create.sql on init
-ADD create.sql /docker-entrypoint-initdb.d
+ENV MYSQL_ROOT_PASSWORD root
+ENV MYSQL_DATABASE comments_db
+ENV MYSQL_USER mysql
+ENV MYSQL_PASSWORD mysql
+# when container will be started, we'll have `test` database created with this schema
+COPY ./create.sql /docker-entrypoint-initdb.d/

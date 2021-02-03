@@ -3,31 +3,172 @@ version: '3.8'
 services:
   users-db:
     container_name: users-db
-    build: ./app/services/users/src/db
+    build: ./services/users/src/db
     ports:
-      - '5433:5432' # expose ports - HOST:CONTAINER
-    restart: always
+      - '5430:5430'
     environment:
-      - DB_USER=sqluser
-      - DB_PASSWORD=sqlpw
+      - MYSQL_ROOT_PASSWORD=root
     healthcheck:
       test: exit 0
-      
+
+  products-db:
+    container_name: products-db
+    build: ./services/products/src/db
+    ports:
+      - '5431:5431'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: exit 0
+
+  notes-db:
+    container_name: notes-db
+    build: ./services/notes/src/db
+    ports:
+      - '5432:5432'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: exit 0
+
+  comments-db:
+    container_name: comments-db
+    build: ./services/comments/src/db
+    ports:
+      - '5433:5433'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: exit 0
+
+  baskets-db:
+    container_name: baskets-db
+    build: ./services/baskets/src/db
+    ports:
+      - '5434:5434'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: exit 0
+
+  authentifications-db:
+    container_name: authentifications-db
+    build: ./services/authentifications/src/db
+    ports:
+      - '5435:5435'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: exit 0
+
+
+
+
+
   users-service:
     container_name: users-service
-    build: ./app/services/users/
+    build: ./services/users/
     volumes:
-      - './app/services/users:/usr/src/app'
-      - './app/services/users/package.json:/usr/src/package.json'
+      - './services/users:/usr/src/app'
+      - './services/users/package.json:/usr/src/package.json'
     ports:
-      - '3000:3000' # expose ports - HOST:CONTAINER
-    restart: always
+      - '3000:3000'
     environment:
-      - DATABASE_URL=mysql://mysql:mysql@users-db:5432/users_dev
-      - DATABASE_TEST_URL=mysql://mysql:mysql@users-db:5432/users_test
-      - NODE_ENV=development
-      - TOKEN_SECRET=changeme
+      - SERVICE_PORT=3000
+      - DATABASE_HOST=users-db
+      - DATABASE_USER=mysql
+      - DATABASE_PW=mysql
+      - DATABASE_DB=users_db
     depends_on:
-      - users-db
-    links:
-      - users-db
+      users-db:
+        condition: service_healthy
+
+  products-service:
+    container_name: products-service
+    build: ./services/products/
+    volumes:
+      - './services/products:/usr/src/app'
+      - './services/products/package.json:/usr/src/package.json'
+    ports:
+      - '3001:3001'
+    environment:
+      - SERVICE_PORT=3001
+      - DATABASE_HOST=products-db
+      - DATABASE_USER=mysql
+      - DATABASE_PW=mysql
+      - DATABASE_DB=products_db
+    depends_on:
+      products-db:
+        condition: service_healthy
+
+  notes-service:
+    container_name: notes-service
+    build: ./services/notes/
+    volumes:
+      - './services/notes:/usr/src/app'
+      - './services/notes/package.json:/usr/src/package.json'
+    ports:
+      - '3002:3002'
+    environment:
+      - SERVICE_PORT=3002
+      - DATABASE_HOST=notes-db
+      - DATABASE_USER=mysql
+      - DATABASE_PW=mysql
+      - DATABASE_DB=notes_db
+    depends_on:
+      notes-db:
+        condition: service_healthy
+
+  comments-service:
+    container_name: comments-service
+    build: ./services/comments/
+    volumes:
+      - './services/comments:/usr/src/app'
+      - './services/comments/package.json:/usr/src/package.json'
+    ports:
+      - '3003:3003'
+    environment:
+      - SERVICE_PORT=3003
+      - DATABASE_HOST=comments-db
+      - DATABASE_USER=mysql
+      - DATABASE_PW=mysql
+      - DATABASE_DB=comments_db
+    depends_on:
+      comments-db:
+        condition: service_healthy
+
+  baskets-service:
+    container_name: baskets-service
+    build: ./services/baskets/
+    volumes:
+      - './services/baskets:/usr/src/app'
+      - './services/baskets/package.json:/usr/src/package.json'
+    ports:
+      - '3004:3004'
+    environment:
+      - SERVICE_PORT=3004
+      - DATABASE_HOST=baskets-db
+      - DATABASE_USER=mysql
+      - DATABASE_PW=mysql
+      - DATABASE_DB=baskets_db
+    depends_on:
+      baskets-db:
+        condition: service_healthy
+
+  authentifications-service:
+    container_name: authentifications-service
+    build: ./services/authentifications/
+    volumes:
+      - './services/authentifications:/usr/src/app'
+      - './services/authentifications/package.json:/usr/src/package.json'
+    ports:
+      - '3005:3005'
+    environment:
+      - SERVICE_PORT=3005
+      - DATABASE_HOST=authentifications-db
+      - DATABASE_USER=mysql
+      - DATABASE_PW=mysql
+      - DATABASE_DB=authentifications_db
+    depends_on:
+      authentifications-db:
+        condition: service_healthy
