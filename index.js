@@ -6,9 +6,9 @@ const baskets = require('./services/baskets/src/routes/basket.routes.js')
 const notes = require('./services/notes/src/routes/note.routes.js')
 const comments = require('./services/comments/src/routes/comment.routes.js')
 const authentifications = require('./services/authentifications/src/routes/authentification.routes.js')
-
+const cors = require('cors');
 const app = express()
-
+app.use(cors);
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(users)

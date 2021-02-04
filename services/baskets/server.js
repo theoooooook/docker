@@ -4,11 +4,10 @@ const baskets = require('./src/routes/basket.routes.js')
 const cors = require('cors'); require('dotenv').config(); 
 // Constants
 const app = express()
-
+app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(baskets)
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true })); 
 
 
 app.get('/', (req, res) => {
