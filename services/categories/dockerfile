@@ -1,0 +1,16 @@
+# Use latest node image
+FROM node:latest
+
+# create and set app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package*.json ./
+RUN npm install
+
+# Bundle app source
+COPY . .
+
+# Run app
+CMD ["npm", "start"]

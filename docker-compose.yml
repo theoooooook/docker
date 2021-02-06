@@ -12,10 +12,10 @@ services:
       resources:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     healthcheck:
       test: exit 0
 
@@ -30,10 +30,10 @@ services:
       resources:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     healthcheck:
       test: exit 0
 
@@ -48,10 +48,10 @@ services:
       resources:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     healthcheck:
       test: exit 0
 
@@ -66,10 +66,10 @@ services:
       resources:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     healthcheck:
       test: exit 0
 
@@ -85,10 +85,29 @@ services:
         limits:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
+          memory: 64M
+    healthcheck:
+      test: exit 0
+
+  categories-db:
+    container_name: categories-db
+    build: ./services/categories/src/db
+    ports:
+      - '5434:5434'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    deploy:
+      resources:
+        limits:
+        limits:
+          cpus: 0.50
           memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
     healthcheck:
       test: exit 0
 
@@ -104,10 +123,10 @@ services:
         limits:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     healthcheck:
       test: exit 0
 
@@ -134,10 +153,10 @@ services:
         limits:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     depends_on:
       users-db:
         condition: service_healthy
@@ -161,10 +180,10 @@ services:
         limits:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     depends_on:
       products-db:
         condition: service_healthy
@@ -188,10 +207,10 @@ services:
         limits:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     depends_on:
       notes-db:
         condition: service_healthy
@@ -214,12 +233,38 @@ services:
       resources:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     depends_on:
       comments-db:
+        condition: service_healthy
+
+  categories-service:
+    container_name: categories-service
+    build: ./services/categories/
+    volumes:
+      - './services/categories:/usr/src/app'
+      - './services/categories/package.json:/usr/src/package.json'
+    ports:
+      - '3003:3003'
+    environment:
+      - SERVICE_PORT=3003
+      - DATABASE_HOST=categories-db
+      - DATABASE_USER=mysql
+      - DATABASE_PW=mysql
+      - DATABASE_DB=categories_db
+    deploy:
+      resources:
+        limits:
+          cpus: 0.50
+          memory: 128M
+        reservations:
+          cpus: 0.25
+          memory: 64M
+    depends_on:
+      categories-db:
         condition: service_healthy
 
   baskets-service:
@@ -240,10 +285,10 @@ services:
       resources:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     depends_on:
       baskets-db:
         condition: service_healthy
@@ -266,10 +311,10 @@ services:
       resources:
         limits:
           cpus: 0.50
-          memory: 512M
+          memory: 128M
         reservations:
           cpus: 0.25
-          memory: 128M
+          memory: 64M
     depends_on:
       authentifications-db:
         condition: service_healthy
