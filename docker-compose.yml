@@ -96,7 +96,7 @@ services:
     container_name: categories-db
     build: ./services/categories/src/db
     ports:
-      - '5434:5434'
+      - '5435:5435'
     environment:
       - MYSQL_ROOT_PASSWORD=root
     deploy:
@@ -115,7 +115,7 @@ services:
     container_name: authentifications-db
     build: ./services/authentifications/src/db
     ports:
-      - '5435:5435'
+      - '5436:5436'
     environment:
       - MYSQL_ROOT_PASSWORD=root
     deploy:
@@ -248,9 +248,9 @@ services:
       - './services/categories:/usr/src/app'
       - './services/categories/package.json:/usr/src/package.json'
     ports:
-      - '3003:3003'
+      - '3004:3004'
     environment:
-      - SERVICE_PORT=3003
+      - SERVICE_PORT=3004
       - DATABASE_HOST=categories-db
       - DATABASE_USER=mysql
       - DATABASE_PW=mysql
@@ -274,9 +274,9 @@ services:
       - './services/baskets:/usr/src/app'
       - './services/baskets/package.json:/usr/src/package.json'
     ports:
-      - '3004:3004'
+      - '3005:3005'
     environment:
-      - SERVICE_PORT=3004
+      - SERVICE_PORT=3005
       - DATABASE_HOST=baskets-db
       - DATABASE_USER=mysql
       - DATABASE_PW=mysql
@@ -300,9 +300,9 @@ services:
       - './services/authentifications:/usr/src/app'
       - './services/authentifications/package.json:/usr/src/package.json'
     ports:
-      - '3005:3005'
+      - '3006:3006'
     environment:
-      - SERVICE_PORT=3005
+      - SERVICE_PORT=3006
       - DATABASE_HOST=authentifications-db
       - DATABASE_USER=mysql
       - DATABASE_PW=mysql

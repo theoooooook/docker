@@ -2,6 +2,7 @@ const sql = require("../db/database.js");
 
 // constructor
 const Category = function(category) {
+  this.categ_name = comment.categ_name;
 };
 
 Category.create = (newCategory, result) => {
