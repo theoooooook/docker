@@ -4,5 +4,6 @@ CREATE TABLE products_db.products(
    name VARCHAR(50),
    price FLOAT,
    description VARCHAR(255),
+   source VARCHAR(255),
    PRIMARY KEY(idProduct)
 );
