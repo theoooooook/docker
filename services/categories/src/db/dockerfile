@@ -1,7 +1,7 @@
 FROM mysql:5
 
 ENV MYSQL_ROOT_PASSWORD root
-ENV MYSQL_DATABASE users_db
+ENV MYSQL_DATABASE categories_db
 ENV MYSQL_USER mysql
 ENV MYSQL_PASSWORD mysql
 # when container will be started, we'll have `test` database created with this schema

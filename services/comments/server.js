@@ -1,6 +1,6 @@
 const express = require('express'); 
 const bodyParser = require('body-parser'); 
-const comments = require('./src/routes/product.routes.js')
+const comments = require('./src/routes/comment.routes.js')
 const cors = require('cors'); require('dotenv').config(); 
 // Constants
 const port = process.env.SERVICE_PORT || 3003

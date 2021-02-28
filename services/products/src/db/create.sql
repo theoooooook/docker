@@ -5,5 +5,6 @@ CREATE TABLE products_db.products(
    price FLOAT,
    description VARCHAR(255),
    source VARCHAR(255),
+   idCategory INT NOT NULL,
    PRIMARY KEY(idProduct)
 );

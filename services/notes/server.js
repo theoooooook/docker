@@ -1,6 +1,6 @@
 const express = require('express'); 
 const bodyParser = require('body-parser'); 
-const notes = require('./src/routes/product.routes.js')
+const notes = require('./src/routes/note.routes.js')
 const cors = require('cors'); require('dotenv').config(); 
 // Constants
 const port = process.env.SERVICE_PORT || 3002
