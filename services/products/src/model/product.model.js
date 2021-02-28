@@ -5,6 +5,7 @@ const Product = function(product) {
   this.name = product.name;
   this.price = product.price;
   this.description = product.description;
+  this.img_path = product.img_path;
 };
 
 Product.create = (newProduct, result) => {
@@ -55,7 +56,7 @@ Product.getAll = result => {
 Product.updateById = (id, product, result) => {
   sql.query(
     // QUERY TO DEFINE WITH PROPER PARAMETERS
-    "UPDATE products SET name = ?, price = ?, description = ? WHERE idProduct = ?",
+    "UPDATE products SET name = ?, price = ?, description = ?, img_path = ? WHERE idProduct = ?",
     [product.name, product.price, product.description, id],
     (err, res) => {
       if (err) {

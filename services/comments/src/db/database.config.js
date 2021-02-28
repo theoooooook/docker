@@ -1,10 +1,6 @@
-var db = "comments_dev";
-if (process.env.NODE_ENV=='development'){
-    db = "comments_dev";
-}
 module.exports = {
-    HOST: "localhost",     
-    USER: "root",     
-    PASSWORD: "root",
-    DB : "docker"
+    HOST: process.env.DATABASE_HOST || "localhost",     
+    USER: process.env.DATABASE_USER || "root",     
+    PASSWORD: process.env.DATABASE_PW || "root",
+    DB : process.env.DATABASE_DB || "comments_db"
 };
